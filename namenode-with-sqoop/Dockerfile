@@ -14,4 +14,15 @@ ENV HADOOP_COMMON_HOME /opt/hadoop-2.7.4
 ENV HADOOP_MAPRED_HOME /opt/hadoop-2.7.4
 RUN which hadoop
 RUN ls -al $SQOOP_HOME/lib
-RUN sqoop help
+
+ENV HIVE_VERSION=${HIVE_VERSION:-2.3.2}
+
+ENV HIVE_HOME /opt/hive
+ENV PATH $HIVE_HOME/bin:$PATH
+
+WORKDIR /opt
+
+#Install Hive libraries
+RUN curl -L# https://archive.apache.org/dist/hive/hive-${HIVE_VERSION}/apache-hive-${HIVE_VERSION}-bin.tar.gz | tar -xz -C /usr/local/
+RUN cp /usr/local/apache-hive-${HIVE_VERSION}-bin/lib/hive-common-${HIVE_VERSION}.jar $SQOOP_HOME/lib
+RUN ls -al $SQOOP_HOME/lib
