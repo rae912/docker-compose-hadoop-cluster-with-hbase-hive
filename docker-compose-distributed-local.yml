@@ -90,7 +90,7 @@ services:
       - 16030:16030
 # for hive - start
   hive-server:
-    image: bde2020/hive:2.3.2-postgresql-metastore
+    image: goodbai/hive:2.3.2-postgresql-metastore-sqoop
     container_name: hive-server
     env_file:
       - ./hadoop-hive.env

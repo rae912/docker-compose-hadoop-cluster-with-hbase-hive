@@ -23,6 +23,7 @@ ENV PATH $HIVE_HOME/bin:$PATH
 WORKDIR /opt
 
 #Install Hive libraries
-RUN curl -L# https://archive.apache.org/dist/hive/hive-${HIVE_VERSION}/apache-hive-${HIVE_VERSION}-bin.tar.gz | tar -xz -C /usr/local/
-RUN cp /usr/local/apache-hive-${HIVE_VERSION}-bin/lib/hive-common-${HIVE_VERSION}.jar $SQOOP_HOME/lib
+RUN curl -L# https://archive.apache.org/dist/hive/hive-${HIVE_VERSION}/apache-hive-${HIVE_VERSION}-bin.tar.gz | tar -xz -C /opt/
+RUN ln -s /opt/apache-hive-${HIVE_VERSION}-bin $HIVE_HOME
+RUN cp ${HIVE_HOME}/lib/hive-common-${HIVE_VERSION}.jar $SQOOP_HOME/lib
 RUN ls -al $SQOOP_HOME/lib
