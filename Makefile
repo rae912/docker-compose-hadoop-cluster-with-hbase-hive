@@ -15,3 +15,9 @@ wordcount:
 	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:$(hadoop_branch) hdfs dfs -cat /output/*
 	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:$(hadoop_branch) hdfs dfs -rm -r /output
 	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:$(hadoop_branch) hdfs dfs -rm -r /input
+hbase-jars-to-hive:
+	docker cp hbase-server:/opt/hbase-1.2.6/lib/hbase-client-1.2.6.jar hive-server:/opt/hive/lib
+    docker cp hbase-server:/opt/hbase-1.2.6/lib/hbase-hadoop-compat-1.2.6.jar hive-server:/opt/hive/lib
+    docker cp hbase-server:/opt/hbase-1.2.6/lib/hbase-hadoop2-compat-1.2.6.jar hive-server:/opt/hive/lib
+    docker cp hbase-server:/opt/hbase-1.2.6/lib/hbase-it-1.2.6.jar hive-server:/opt/hive/lib
+    docker cp hbase-server:/opt/hbase-1.2.6/lib/hbase-server-1.2.6.jar hive-server:/opt/hive/lib
