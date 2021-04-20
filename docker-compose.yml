@@ -12,6 +12,7 @@ services:
       - ./hadoop.env
     ports:
       - 50070:50070
+    restart: always
 
   datanode:
     image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
@@ -24,6 +25,7 @@ services:
       - ./hadoop.env
     ports:
       - 50075:50075
+    restart: always
 
   resourcemanager:
     image: bde2020/hadoop-resourcemanager:2.0.0-hadoop2.7.4-java8
@@ -34,6 +36,7 @@ services:
       - ./hadoop.env
     ports:
       - 8088:8088
+    restart: always
 
   nodemanager1:
     image: bde2020/hadoop-nodemanager:2.0.0-hadoop2.7.4-java8
@@ -44,6 +47,7 @@ services:
       - ./hadoop.env
     ports:
       - 8042:8042
+    restart: always
 
   historyserver:
     image: bde2020/hadoop-historyserver:2.0.0-hadoop2.7.4-java8
@@ -56,6 +60,7 @@ services:
       - ./hadoop.env
     ports:
       - 8188:8188
+    restart: always
   
   zoo:
     image: zookeeper:3.4.10
@@ -65,6 +70,7 @@ services:
       ZOO_SERVERS: server.1=0.0.0.0:2888:3888
     ports:
       - 2181:2181
+    restart: always
 
 
   hbase-master:
@@ -80,6 +86,7 @@ services:
       HBASE_HEAPSIZE: 2048
     ports:
       - 16010:16010
+    restart: always
 
   hbase-region:
     image: bde2020/hbase-regionserver:1.0.0-hbase1.6.0
@@ -95,6 +102,7 @@ services:
       HBASE_HEAPSIZE: 2048
     ports:
       - 16030:16030
+    restart: always
 # for hive - start
   hive-server:
     image: goodbai/hive:2.3.2-postgresql-metastore-sqoop
@@ -106,6 +114,7 @@ services:
       SERVICE_PRECONDITION: "hive-metastore:9083"
     ports:
       - "10000:10000"
+    restart: always
   hive-metastore:
     image: bde2020/hive:2.3.2-postgresql-metastore
     container_name: hive-metastore
@@ -116,9 +125,11 @@ services:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432"
     ports:
       - "9083:9083"
+    restart: always
   hive-metastore-postgresql:
     image: bde2020/hive-metastore-postgresql:2.3.0
     container_name: hive-metastore-postgresql
+    restart: always
   # presto-coordinator:
   #   image: shawnzhu/prestodb:0.181
   #   container_name: presto-coordinator
