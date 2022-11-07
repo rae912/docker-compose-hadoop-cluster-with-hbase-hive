@@ -86,6 +86,7 @@ services:
       HBASE_HEAPSIZE: 2048
     ports:
       - 16010:16010
+      - 222:22
     restart: always
 
   hbase-region:
