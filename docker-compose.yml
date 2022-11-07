@@ -74,7 +74,7 @@ services:
 
 
   hbase-master:
-    image: bde2020/hbase-master:1.0.0-hbase1.6.0
+    image: bde2020/hbase-master:latest
     container_name: hbase-master
     hostname: hbase-master
     volumes:
@@ -89,7 +89,7 @@ services:
     restart: always
 
   hbase-region:
-    image: bde2020/hbase-regionserver:1.0.0-hbase1.6.0
+    image: bde2020/hbase-regionserver:latest
     container_name: hbase-regionserver
     hostname: hbase-regionserver
     volumes:
