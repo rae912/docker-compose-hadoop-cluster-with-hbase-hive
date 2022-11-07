@@ -48,7 +48,7 @@ services:
       - ./hadoop.env
 
   hbase:
-    image: bde2020/hbase-standalone:1.0.0-hbase1.6.0
+    image: bde2020/hbase-standalone:latest
     container_name: hbase
     volumes:
       - hbase_data:/hbase-data
